@@ -16,7 +16,7 @@ sleepTime = 0
 timeOut=(10, 60)
 
 
-ua_list = [
+uaList = [
             {"User-Agent":"Opera/9.27 (Windows NT 5.2; U; zh-cn)"},
             {"User-Agent":"Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)"},
             {"User-Agent":"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; 360se)"},
@@ -27,7 +27,7 @@ ua_list = [
 
 if __name__ == "__main__":
     print("Start")
-    response = requests.get(uri, headers = random.choice(ua_list))
+    response = requests.get(uri, headers = random.choice(uaList))
     if(response.status_code == 200):
         soup = BeautifulSoup(response.content, "lxml")
         soup = soup.find("div", class_="tiled-gallery")
@@ -46,7 +46,7 @@ if __name__ == "__main__":
             print(imgSrc, end='\t')
             try:
                 #Get img
-                imgFile = requests.get(imgSrc, headers = random.choice(ua_list), timeout = timeOut)
+                imgFile = requests.get(imgSrc, headers = random.choice(uaList), timeout = timeOut)
                 #Save file
                 with open(filePath + '/' + fileName,'wb') as f:
                     f.write(imgFile)
