@@ -1,8 +1,8 @@
 # azlinzi-crawler
-azlinzi.wordpress.com  crawler
+_azlinzi.wordpress.com_  crawler
 <br>
-`requests` `BeautifulSoup`
+`requests` `bs4`
 <br><br>
 同行者画廊 图片爬虫
 <br>
-😶仅供交流学习
+😶 仅供交流学习
