@@ -48,7 +48,7 @@ if __name__ == "__main__":
                 #Get img
                 imgFile = requests.get(imgSrc, headers = random.choice(uaList), timeout = timeOut)
                 #Save file
-                with open(filePath + '/' + fileName,'wb') as f:
+                with open(filePath + '/' + fileName, "wb") as f:
                     f.write(imgFile)
                 print("Succeed")
             except:
