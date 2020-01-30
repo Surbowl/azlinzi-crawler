@@ -54,6 +54,6 @@ if __name__ == "__main__":
             except:
                 print("Fail")
             number = number + 1
+        print("Finish")
     else:
         print("Websites inaccessible")
-    print("Finish")
