@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
         total = len(soup)
         number = 1
-        print("There are %d pictures"%total)
+        print("There are %d pictures, please wait a moment"%total)
 
         for imgHtml in soup:
             time.sleep(sleepTime)
@@ -56,3 +56,4 @@ if __name__ == "__main__":
             number = number + 1
     else:
         print("Websites inaccessible")
+    print("Finish")
