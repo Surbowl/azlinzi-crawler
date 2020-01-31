@@ -15,7 +15,7 @@ filePath = "D:/azlinzi"
 sleepTime = 1
 
 #Connect & read timeout
-timeOut=(10, 60)
+timeOut = (10, 60)
 
 
 ua_list = [
@@ -55,7 +55,7 @@ if __name__ == "__main__":
                     #Get img
                     imgFile = requests.get(imgSrc, headers = random.choice(ua_list), timeout = timeOut).content
                     #Save file
-                    with open(filePath + '/' + fileName,'wb') as f:
+                    with open(filePath + '/' + fileName, 'wb') as f:
                         f.write(imgFile)
                     print("Succeed")
                 except:
