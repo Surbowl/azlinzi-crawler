@@ -46,7 +46,7 @@ if __name__ == "__main__":
             print(imgSrc, end='\t')
             try:
                 #Get img
-                imgFile = requests.get(imgSrc, headers = random.choice(uaList), timeout = timeOut)
+                imgFile = requests.get(imgSrc, headers = random.choice(uaList), timeout = timeOut).content
                 #Save file
                 with open(filePath + '/' + fileName, "wb") as f:
                     f.write(imgFile)
