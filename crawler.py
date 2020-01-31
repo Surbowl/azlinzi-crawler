@@ -1,21 +1,14 @@
+import sys
 import random
-import time
 import os
+import time
 import requests
 from bs4 import BeautifulSoup
 
-#The link you want to crawl
-uri = "https://azlinzi.wordpress.com/2019/04/05/%E4%BE%8D%E5%BA%94%E7%94%9F%E6%89%BF%E8%B1%AA/"
-
-#Save path
-filePath = "D:/azlinzi"
-
 #Time interval of crawler
-sleepTime = 1
-
+sleepTime = 0
 #Connect & read timeout
-timeOut = (10, 60)
-
+timeOut=(10, 60)
 
 ua_list = [
             {"User-Agent":"Opera/9.27 (Windows NT 5.2; U; zh-cn)"},
@@ -27,39 +20,57 @@ ua_list = [
         ]
 
 if __name__ == "__main__":
-    print("Start")
-    #Get html page
-    response = requests.get(uri, headers = random.choice(ua_list))
-    if(response.status_code == 200):
-        #Find all images
-        soup = BeautifulSoup(response.content, "lxml")
-        soup = soup.find("div", class_="tiled-gallery")
-        soup = soup.find_all("img")
-        total = len(soup)
-        if(total > 0):
-            print("There are %d pictures, please wait a moment..."%total)
-            #Make dirs
-            if not os.path.exists(filePath):
-                os.makedirs(filePath)
-            #Start crawling for images
-            number = 1
-            for imgHtml in soup:
-                time.sleep(sleepTime)
-                print("%d/%d"%(number, total), end='\t')
-                #Get image src
-                imgSrc = imgHtml.get("data-orig-file")
-                fileName = imgSrc.split('/')[-1]
-                print(imgSrc, end='\t')
-                try:
-                    #Get image file
-                    imgFile = requests.get(imgSrc, headers = random.choice(ua_list), timeout = timeOut).content
-                    #Save image file
-                    with open(filePath + '/' + fileName, 'wb') as f:
-                        f.write(imgFile)
-                    print("Succeed")
-                except:
-                    print("Fail")
-                number = number + 1
-        print("Finish")
+    argvLen = len(sys.argv)
+    if(argvLen < 2):
+        print("Please input parameters")
+        print("crawler.py [uri]")
+        print("crawler.py [uri] [save_path]")
     else:
-        print("Websites inaccessible")
+        #The uri you want to crawl
+        uri = sys.argv[1]
+        if(argvLen < 3):
+            #Default save path
+            filePath = sys.path[0] + "\\azlinzi"
+        else:
+            #Param save path
+            filePath = sys.argv[2]
+        print("Start")
+        print("Uri:%s"%uri)
+        print("File path:%s"%filePath)
+
+        #Get html page
+        response = requests.get(uri, headers = random.choice(ua_list), timeout = timeOut)
+        if(response.status_code == 200):
+            #Find all images
+            soup = BeautifulSoup(response.content, "lxml")
+            soup = soup.find("div", class_="tiled-gallery")
+            soup = soup.find_all("img")
+            
+            total = len(soup)
+            if(total > 0):
+                print("There are %d pictures, please wait a moment..."%total)
+                #Make dirs
+                if not os.path.exists(filePath):
+                    os.makedirs(filePath)
+                #Start crawling for images
+                number = 1
+                for imgHtml in soup:
+                    time.sleep(sleepTime)
+                    print("%d/%d"%(number, total), end='\t')
+                    #Get image src
+                    imgSrc = imgHtml.get("data-orig-file")
+                    fileName = imgSrc.split('/')[-1]
+                    print(imgSrc, end='\t')
+                    try:
+                        #Get image file
+                        imgFile = requests.get(imgSrc, headers = random.choice(ua_list), timeout = timeOut).content
+                        #Save image file
+                        with open(filePath + "\\" + fileName,'wb') as f:
+                            f.write(imgFile)
+                        print("Succeed")
+                    except:
+                        print("Fail")
+                    number = number + 1
+            print("Finish")
+        else:
+            print("Websites inaccessible")
