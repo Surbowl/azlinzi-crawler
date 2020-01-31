@@ -5,11 +5,14 @@ import time
 import requests
 from bs4 import BeautifulSoup
 
+#https://github.com/Surbowl/azlinzi-crawler
+#2020-1-31
+
 #Time interval of crawler
 sleepTime = 0
 #Connect & read timeout
-timeOut=(10, 60)
-
+timeOut = (10, 60)
+#User-Agent list
 ua_list = [
             {"User-Agent":"Opera/9.27 (Windows NT 5.2; U; zh-cn)"},
             {"User-Agent":"Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)"},
@@ -65,7 +68,7 @@ if __name__ == "__main__":
                         #Get image file
                         imgFile = requests.get(imgSrc, headers = random.choice(ua_list), timeout = timeOut).content
                         #Save image file
-                        with open(filePath + "\\" + fileName,'wb') as f:
+                        with open(filePath + "\\" + fileName, 'wb') as f:
                             f.write(imgFile)
                         print("Succeed")
                     except:
