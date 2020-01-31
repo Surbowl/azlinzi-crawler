@@ -31,7 +31,7 @@ if __name__ == "__main__":
     #Get html page
     response = requests.get(uri, headers = random.choice(ua_list))
     if(response.status_code == 200):
-        #Find all img
+        #Find all images
         soup = BeautifulSoup(response.content, "lxml")
         soup = soup.find("div", class_="tiled-gallery")
         soup = soup.find_all("img")
@@ -46,14 +46,14 @@ if __name__ == "__main__":
             for imgHtml in soup:
                 time.sleep(sleepTime)
                 print("%d/%d"%(number, total), end='\t')
-                #Get img src
+                #Get image src
                 imgSrc = imgHtml.get("data-orig-file")
                 fileName = imgSrc.split('/')[-1]
                 print(imgSrc, end='\t')
                 try:
-                    #Get img
+                    #Get image file
                     imgFile = requests.get(imgSrc, headers = random.choice(ua_list), timeout = timeOut).content
-                    #Save file
+                    #Save image file
                     with open(filePath + '/' + fileName, 'wb') as f:
                         f.write(imgFile)
                     print("Succeed")
