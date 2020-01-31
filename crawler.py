@@ -8,7 +8,6 @@ from bs4 import BeautifulSoup
 uri = "https://azlinzi.wordpress.com/2019/04/05/%E4%BE%8D%E5%BA%94%E7%94%9F%E6%89%BF%E8%B1%AA/"
 
 #Save path
-#If you save on disk C, you may need administrator privileges
 filePath = "D:/azlinzi"
 
 #Time interval of crawler
