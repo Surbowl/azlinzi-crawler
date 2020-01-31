@@ -1,5 +1,5 @@
-# azlinzi-crawler
-🌈 _azlinzi.wordpress.com_ crawler
+# azlinzi-crawler 🌈
+_azlinzi.wordpress.com_ crawler
 <br>
 `Python 3`
 <br><br>
