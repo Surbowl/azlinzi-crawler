@@ -28,5 +28,6 @@ python crawler.py https://azlinzi.wordpress.com/2019/04/05/%E4%BE%8D%E5%BA%94%E7
 # sample 2
 python crawler.py https://azlinzi.wordpress.com/2019/04/05/%E4%BE%8D%E5%BA%94%E7%94%9F%E6%89%BF%E8%B1%AA/
 ```
+![sample image](https://raw.githubusercontent.com/Surbowl/azlinzi-crawler/master/sample.png)
 <br><br>
 Have fun 🤪
