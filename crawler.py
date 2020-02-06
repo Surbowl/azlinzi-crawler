@@ -23,6 +23,7 @@ ua_list = [
         ]
 
 if __name__ == "__main__":
+    #Process input parameters
     argvLen = len(sys.argv)
     if(argvLen < 2):
         print("Please input parameters")
@@ -74,6 +75,8 @@ if __name__ == "__main__":
                     except:
                         print("Fail")
                     number = number + 1
+            else:
+                 print("No pictures found")       
             print("Finish")
         else:
             print("Websites inaccessible")
